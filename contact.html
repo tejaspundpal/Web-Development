@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Tejas Pundpal - Computer Science Geek</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar sidebargo">
+        <nav>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/aboutme.html">About me</a></li>
+          <li><a href="/education.html">My Education</a></li>
+          <li><a href="/skills.html">Skills</a></li>
+          <li><a href="/work.html">My Work</a></li>
+          <li><a href="/contact.html">Contact me</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="main">
+        <div class="hamburger">
+          <img class="ham" src="images\ham.png" alt="" width="26px">
+          <img class="cross" src="images\cross.png" alt="" width="23px">
+        </div>
+        <div class="contactform">
+          <h2 class="reachmeheading"><span>Reach me</span> here &#129309</h2>
+          <p id="contactintro">
+            Be it discussing any collaboration opportunities or just a casual conversation on Technologies, please feel free to reach out! I would love to have a chat with you! :)
+          </p>
+          <p>
+            <img id="contacticon" src="images\phone.png" alt="">
+            <a aria-label="Call Tejas" data-position="top" data-tooltip="Tejas"
+              class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i class="fa fa-phone"></i><a
+                aria-label="Call Tejas">7620872033</a></a>
+          </p>
+          <p>
+            <img id="contacticon" src="images\mail.png" alt="">
+            <a aria-label="Email Tejas" href="mailto:tejaspundpal55@gmail.com" target="_blank" data-position="top"
+              data-tooltip="Email Tejas" class="btn-floating btn-large waves-effect waves-light blue-grey tooltipped"><i
+                class="fa fa-envelope"></i><a aria-label="Email Tejas" href="mailto:tejaspundpal55@gmail.com"
+                class="hoverline">tejaspundpal55@gmail.com</a></a>
+          </p>
+          <h2><span>Contact me</span> here &#129309</h2>
+          <form name="submit-to-google-sheet">
+            <div class="mb-3">
+              <label for="clientemail" class="form-label"
+                >Email address :
+              </label>
+              <input
+                type="email"
+                class="form-control"
+                id="clientemail"
+                name="email"
+                aria-describedby="emailHelp"
+              />
+              <p id="emailHelp" class="form-text">
+                We'll never share your email and mobile number with anyone else.
+              </p>
+              <label for="mobilenumber" class="form-label"
+                >Mobile number :
+              </label>
+              <input type="phone" class="form-control" name="mobileNumber" id="mobilenumber" />
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+          </form>
+          <span id="msg"></span>
+        </div>
+      </div>
+    </div>
+    <script src="index.js"></script>
+    <script>
+      const scriptURL = 'https://script.google.com/macros/s/AKfycbw6KZ6pEYPJS4qgz-Uh5zSjca6WIxc4sN-lXxH016Y-XgOR4SHtl1D579FdVyWlisV9Ug/exec'
+      const form = document.forms['submit-to-google-sheet']
+      const msg = document.getElementById("msg")
+      form.addEventListener('submit', e => {
+        e.preventDefault()
+        fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+          .then(response => {
+            msg.innerHTML = "Information sent successfully."
+            setTimeout(function(){
+              msg.innerHTML = ""
+            },2500)
+            form.reset()
+          })
+          .catch(error => console.error('Error!', error.message))
+      })
+    </script>
+  </body>
+</html>
